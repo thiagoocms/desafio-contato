@@ -1,0 +1,31 @@
+server:
+  port: 5000
+  servlet:
+    context-path: /contato-service
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+    include-exception: true
+spring:
+  application:
+    name: contato-service
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    open-in-view: true
+    hibernate:
+      id:
+        new_generator_mappings: true
+      ddl-auto: none
+      show-sql: true
+      naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+    properties:
+      hibernate:
+        default_schema: desafio
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/desafio
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
