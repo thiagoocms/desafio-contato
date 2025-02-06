@@ -38,6 +38,7 @@ class ContatoServiceImplTest {
         Contato result = contatoServiceImpl.create(new Contato());
         verify(contatoValidation).checkMandatoryFields(any(Contato.class));
         verify(contatoValidation).checkValidFields(any(Contato.class));
+        verify(contatoValidation).checkValidExist(any(Contato.class));
         Assertions.assertNotNull(result);
     }
 

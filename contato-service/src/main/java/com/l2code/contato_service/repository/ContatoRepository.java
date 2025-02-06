@@ -19,4 +19,6 @@ public interface ContatoRepository extends JpaRepository<Contato, Long> {
 
     @Query("SELECT c FROM Contato c WHERE c.snAtivo = TRUE ORDER BY c.nome ASC")
     List<Contato> findAllBySnAtivoIsTrueOrderByNomeAsc();
+
+    Long countByCelularAndSnAtivoIsTrue(String celular);
 }

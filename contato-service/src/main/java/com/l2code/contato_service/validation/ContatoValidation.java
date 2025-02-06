@@ -2,6 +2,7 @@ package com.l2code.contato_service.validation;
 
 import com.l2code.contato_service.domain.Contato;
 import com.l2code.contato_service.exception.BadRequestException;
+import com.l2code.contato_service.exception.ConflictException;
 import com.l2code.contato_service.exception.ResourceNotFoundException;
 import com.l2code.contato_service.repository.ContatoRepository;
 import com.l2code.contato_service.utils.ContatoUtils;
@@ -58,7 +59,7 @@ public class ContatoValidation {
 
     public Contato checkExist(Long id) {
 
-        var optional = contatoRepository.findByIdAndSnAtivoIsTrue(id);
+        var optional = this.contatoRepository.findByIdAndSnAtivoIsTrue(id);
 
         return optional.orElseThrow(() -> new ResourceNotFoundException("Contato ativo não encontrado."));
     }
@@ -71,6 +72,14 @@ public class ContatoValidation {
 
         if (!ContatoUtils.isValid(entity.getCelular(), ContatoUtils.Regex.PHONE)) {
             throw new BadRequestException("N do celular invalido");
+        }
+    }
+
+    public void checkValidExist(Contato entity) {
+
+        var count = this.contatoRepository.countByCelularAndSnAtivoIsTrue(entity.getCelular());
+        if (count > 0) {
+            throw new ConflictException("Já existe um contato com esse N do celular");
         }
     }
 

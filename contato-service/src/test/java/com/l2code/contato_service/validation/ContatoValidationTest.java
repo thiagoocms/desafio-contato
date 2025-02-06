@@ -2,6 +2,7 @@ package com.l2code.contato_service.validation;
 
 import com.l2code.contato_service.domain.Contato;
 import com.l2code.contato_service.exception.BadRequestException;
+import com.l2code.contato_service.exception.ConflictException;
 import com.l2code.contato_service.exception.ResourceNotFoundException;
 import com.l2code.contato_service.repository.ContatoRepository;
 import org.junit.jupiter.api.Assertions;
@@ -63,5 +64,11 @@ class ContatoValidationTest {
     @Test
     void testCheckValidFieldsException() {
         Assertions.assertThrows(BadRequestException.class, () -> contatoValidation.checkValidFields(new Contato()));
+    }
+
+    @Test
+    void testcheckValidExistException() {
+        when(contatoRepository.countByCelularAndSnAtivoIsTrue(any())).thenReturn(1L);
+        Assertions.assertThrows(ConflictException.class, () -> contatoValidation.checkValidExist(new Contato()));
     }
 }

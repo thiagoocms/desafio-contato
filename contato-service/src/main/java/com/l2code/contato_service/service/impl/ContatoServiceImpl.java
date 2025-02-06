@@ -33,6 +33,8 @@ public class ContatoServiceImpl implements ContatoService {
 
         this.contatoValidation.checkValidFields(entity);
 
+        this.contatoValidation.checkValidExist(entity);
+
         this.contatoRepository.save(entity);
 
         return entity;
