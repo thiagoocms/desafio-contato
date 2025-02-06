@@ -1,0 +1,32 @@
+package com.l2code.contato_service.utils;
+
+import org.springframework.util.StringUtils;
+
+import java.util.regex.Pattern;
+
+public class ContatoUtils {
+
+    public static boolean isValid(String str, Regex regex) {
+
+        if (StringUtils.hasText(str)) {
+            return Pattern.compile(regex.getRegex()).matcher(str).matches();
+        }
+        
+        return false;
+    }
+
+    public enum Regex {
+        EMAIL("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"),
+        PHONE("^\\d{11}$");
+
+        private final String regex;
+
+        Regex(String regex) {
+            this.regex = regex;
+        }
+
+        public String getRegex() {
+            return regex;
+        }
+    }
+}
