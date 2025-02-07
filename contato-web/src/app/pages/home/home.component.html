@@ -1,0 +1,25 @@
+<div class="main">
+    
+    <div class="container">
+        <h1 class="first">Favoritos</h1>
+        <div class="box" *ngIf="favoritos.length < 1">
+           <p> Nenhum contato favoritado</p>
+        </div>
+        <div class="box" *ngFor="let item  of favoritos">
+            <app-item [contato]="item"></app-item>
+        </div>
+        <h1>Contatos</h1>
+        <div class="box" *ngIf="letras.length < 1">
+            <p>Nenhum contato registrado</p>
+        </div>
+        <div class="box" *ngFor="let item  of letras">
+            <app-session [letter]="item.letra" [items]="item.contatos"></app-session>
+        </div>
+    </div>
+    <div class="box-button">
+        <button [routerLink]="['/form']" mat-button class="button">Novo</button>
+    </div>
+   
+</div>
+
+

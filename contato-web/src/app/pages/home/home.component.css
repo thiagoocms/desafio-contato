@@ -1,0 +1,76 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background: #ffff;
+    border-radius: 15px;
+    width: 60%;
+    min-height: 500px;
+    margin-left: 150px;
+}
+
+.main {
+    border-radius: 10px;
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.02);
+    background: rgba(255, 255, 255, 0.133);
+    border: 1px solid #fff;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center; 
+    padding: 15px 0 15px 0;
+}
+
+.container h1 {
+    background-color: rgba(20, 140, 252, 0.733);
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fffcfc;
+    padding: 8px 0;
+    text-align: center;
+    margin: 0px;
+}
+
+.first {
+    border-radius: 15px 15px  0  0;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.box p {
+    color: #0a0a0aa2;
+    font-weight: 700;
+}
+
+.button {
+    font-size: 15px;
+    border-radius: 15px;
+    height: 50px;
+    width: 150px;
+    
+}
+
+.button:hover {
+    color:rgba(20, 140, 252, 0.733);
+}
+
+.box-button{
+    text-align: end;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+app-item {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+app-session {
+    width: 100%;
+}

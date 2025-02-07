@@ -1,0 +1,39 @@
+<div class="container">
+    <mat-card class="full-screen-card">
+      <mat-card-title>{{ isEditMode ? 'Editar Contato' : 'Novo Contato' }}</mat-card-title>
+  
+      <form [formGroup]="contatoForm" (ngSubmit)="onSubmit()" class="form-container">
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+          <mat-error *ngIf="contatoForm.get('nome')?.invalid">Nome é obrigatório</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="contatoForm.get('email')?.invalid">E-mail invalido</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Celular</mat-label>
+          <input matInput type="tel" formControlName="celular">
+          <mat-error *ngIf="contatoForm.get('celular')?.invalid">Celular é obrigatório</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Telefone</mat-label>
+          <input matInput type="tel" formControlName="telefone">
+        </mat-form-field>
+  
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit">{{ isEditMode ? 'Atualizar' : 'Salvar' }}</button>
+           <button *ngIf="isEditMode" mat-button color="accent"  type="button" (click)="onDeactivate()">
+            Desativar
+          </button>
+          <button mat-button color="warn" [routerLink]="['/']">Cancelar</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

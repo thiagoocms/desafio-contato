@@ -1,0 +1,11 @@
+<div class="box" [routerLink]="['/form/' + contato?.id]">
+   <div class="row-flex">
+    <p class="name">{{contato?.nome}}</p>
+    <div class="box-star" (click)="toggleFavorite($event)">
+        <mat-icon [ngClass]="{'favorited': favorito}">
+            {{ favorito ? 'star' : 'star_outline' }}
+          </mat-icon>
+    </div>
+   </div>
+    <div class="row"></div>
+</div>
