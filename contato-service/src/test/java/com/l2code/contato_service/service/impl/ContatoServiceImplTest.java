@@ -1,8 +1,6 @@
 package com.l2code.contato_service.service.impl;
 
 import com.l2code.contato_service.domain.Contato;
-import com.l2code.contato_service.dto.contato.ContatoDTO;
-import com.l2code.contato_service.dto.contato.ItemListContatoDTO;
 import com.l2code.contato_service.dto.contato.ListContatoDTO;
 import com.l2code.contato_service.dto.projection.SimpleContatoProjection;
 import com.l2code.contato_service.repository.ContatoRepository;
@@ -85,5 +83,13 @@ class ContatoServiceImplTest {
         when(contatoValidation.checkExist(anyLong())).thenReturn(new Contato());
 
         contatoServiceImpl.inactivate(1L);
+    }
+
+    @Test
+    void testFindById() {
+        when(contatoValidation.checkExist(anyLong())).thenReturn(new Contato());
+
+        Contato result = contatoServiceImpl.findById(1L);
+        Assertions.assertNotNull(result);
     }
 }

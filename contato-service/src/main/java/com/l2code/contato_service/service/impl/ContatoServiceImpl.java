@@ -53,11 +53,11 @@ public class ContatoServiceImpl implements ContatoService {
 
         for (Contato contato : list) {
 
-            var letter = contato.getNome().substring(0, 1);
+            var letter = contato.getNome().substring(0, 1).toLowerCase();
 
             if (!map.containsKey(letter)) {
 
-                var listLetter = list.stream().filter(item -> item.getNome().substring(0, 1).equals(letter)).toList();
+                var listLetter = list.stream().filter(item -> item.getNome().substring(0, 1).toLowerCase().equals(letter)).toList();
 
                 map.put(letter, listLetter);
             }
@@ -95,6 +95,11 @@ public class ContatoServiceImpl implements ContatoService {
         var entity = this.contatoValidation.checkExist(id);
         entity.setSnAtivo(Boolean.FALSE);
         this.contatoRepository.save(entity);
+    }
+
+    @Override
+    public Contato findById(Long id) {
+        return this.contatoValidation.checkExist(id);
     }
 
     private void modifyFavorite(Long id, boolean bool) {

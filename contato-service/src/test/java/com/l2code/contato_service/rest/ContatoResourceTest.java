@@ -2,7 +2,6 @@ package com.l2code.contato_service.rest;
 
 import com.l2code.contato_service.domain.Contato;
 import com.l2code.contato_service.dto.contato.ContatoDTO;
-import com.l2code.contato_service.dto.contato.ItemListContatoDTO;
 import com.l2code.contato_service.dto.contato.ListContatoDTO;
 import com.l2code.contato_service.dto.contato.SimpleContatoDTO;
 import com.l2code.contato_service.service.ContatoService;
@@ -14,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -72,6 +69,14 @@ class ContatoResourceTest {
     void testInactivate() {
         ResponseEntity<Void> result = contatoResource.inactivate(1L);
         verify(contatoService).inactivate(anyLong());
+        Assertions.assertNotNull(result);
+    }
+
+    @Test
+    void testFindById() {
+        when(contatoService.findById(anyLong())).thenReturn(mock(Contato.class));
+
+        ResponseEntity<ContatoDTO> result = contatoResource.findById(1L);
         Assertions.assertNotNull(result);
     }
 }

@@ -16,4 +16,6 @@ public interface ContatoService {
     void unFavorite(Long id);
 
     void inactivate(Long id);
+
+    Contato findById(Long id);
 }

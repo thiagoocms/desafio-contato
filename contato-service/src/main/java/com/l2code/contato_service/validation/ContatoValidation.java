@@ -73,6 +73,16 @@ public class ContatoValidation {
         if (!ContatoUtils.isValid(entity.getCelular(), ContatoUtils.Regex.PHONE)) {
             throw new BadRequestException("N do celular invalido");
         }
+
+        if (StringUtils.hasText(entity.getTelefone()) &&
+                (!ContatoUtils.isValid(entity.getCelular(), ContatoUtils.Regex.PHONE)
+                        || entity.getTelefone().length() != 10)) {
+            throw new BadRequestException("N do telefone invalido");
+        }
+
+        if (entity.getNome().length() > 100) {
+            throw new BadRequestException("Nome muito longo");
+        }
     }
 
     public void checkValidExist(Contato entity) {

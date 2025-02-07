@@ -1,18 +1,12 @@
 package com.l2code.contato_service.utils;
 
-import org.springframework.util.StringUtils;
-
 import java.util.regex.Pattern;
 
 public class ContatoUtils {
 
     public static boolean isValid(String str, Regex regex) {
 
-        if (StringUtils.hasText(str)) {
-            return Pattern.compile(regex.getRegex()).matcher(str).matches();
-        }
-        
-        return false;
+        return Pattern.compile(regex.getRegex()).matcher(str).matches();
     }
 
     public enum Regex {

@@ -50,11 +50,13 @@ public class ContatoResource {
 
     @GetMapping
     public ResponseEntity<ListContatoDTO> findAll() {
+
         var response = this.contatoService.findAll();
+
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}/favoritar")
+    @PatchMapping("/{id}/favoritar")
     public ResponseEntity<Void> favorite(@PathVariable Long id) {
 
         this.contatoService.favorite(id);
@@ -62,7 +64,7 @@ public class ContatoResource {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/desfavoritar")
+    @PatchMapping("/{id}/desfavoritar")
     public ResponseEntity<Void> unFavorite(@PathVariable Long id) {
 
         this.contatoService.unFavorite(id);
@@ -70,11 +72,21 @@ public class ContatoResource {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}/desativar")
+    @PatchMapping("/{id}/desativar")
     public ResponseEntity<Void> inactivate(@PathVariable Long id) {
 
         this.contatoService.inactivate(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ContatoDTO> findById(@PathVariable Long id) {
+
+        var entity = this.contatoService.findById(id);
+
+        var contatoDTO = ContatoMapper.toDto(entity);
+
+        return ResponseEntity.ok(contatoDTO);
     }
 }
